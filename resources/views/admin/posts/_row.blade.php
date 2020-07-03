@@ -1,4 +1,5 @@
 <tr>
+    <td>{{ optional($post->published_at)->format('d/m/Y') }}</td>
     <td>{{ $post->title }}</td>
     <td>{{ Illuminate\Support\Str::limit($post->excerpt, 50, '...') }}</td>
     <td>
@@ -16,7 +17,7 @@
             @method('DELETE')
             @csrf
             <button class="btn btn-danger btn-xs"
-                onclick="return confirm('¿Estás seguro/a?')">
+                onclick="return confirm('Are you sure?')">
                 <i class="fas fa-trash">
                 </i>
             </button>

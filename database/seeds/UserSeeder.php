@@ -14,13 +14,18 @@ class UserSeeder extends Seeder
     {
         User::truncate();
 
-        $user = new User();
+        User::create([
+            'name'           => 'Admin',
+            'email'          => 'admin@admin.com',
+            'password'       => 'password',
+        ]);
 
-        $user->name = "Admin";
-        $user->email = "admin@admin.com";
-        $user->password = bcrypt('password');
-
-        $user->save();
+        for($i = 1; $i < 10; $i++) {
+            factory(User::class)->create([
+                'created_at' => now()->subDays($i),
+                'updated_at' => now()->subDays($i)
+            ]);
+        }
 
     }
 }

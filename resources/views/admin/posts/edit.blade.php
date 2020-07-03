@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('admin.layouts.layout')
 
 @section('header')
     <div class="container-fluid">
@@ -8,9 +8,9 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.posts.index') }}">Posts</a></li>
-                    <li class="breadcrumb-item active">Crear</li>
+                    <li class="breadcrumb-item active">New</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Imágenes</h5>
+                <h5 class="card-header">Images</h5>
                 <div class="card-body">
                     <div class="row">
                         @foreach($post->photos as $photo)
@@ -57,7 +57,7 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="title">Título</label>
+                            <label for="title">Title</label>
                             <input type="text"
                                    name="title"
                                    value="{{ old('title', $post->title) }}"
@@ -67,14 +67,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="body">Contenido</label>
+                            <label for="body">Body</label>
                             <textarea name="body" class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" placeholder="Contenido de la publicación">{{ old('body', $post->body) }}</textarea>
                             {!! $errors->first('body', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
 
                         <div class="form-group">
-                            <label for="body">iframe (Ancho: 100% Alto: 480)</label>
-                            <textarea rows="2" name="iframe" class="form-control textarea" placeholder="Contenido embebido (vídeo o audio)">{{ old('iframe', $post->iframe) }}</textarea>
+                            <label for="body">iframe (Width: 100% Heigth: 480)</label>
+                            <textarea rows="2" name="iframe" class="form-control textarea" placeholder="Embebed content (vídeo o audio)">{{ old('iframe', $post->iframe) }}</textarea>
                         </div>
 
                     </div>
@@ -89,7 +89,7 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="published_at">Fecha de publicación</label>
+                            <label for="published_at">Published at</label>
 
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -106,9 +106,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="category_id">Categorías</label>
+                            <label for="category_id">Categories</label>
                             <select name="category_id" class="form-control select2bs4 {{ $errors->has('category_id') ? 'is-invalid' : '' }}">
-                                <option value="">Selecciona</option>
+                                <option value="">Select</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
@@ -117,8 +117,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="tags">Etiquetas</label>
-                            <select name="tags[]" class="select2bs4" multiple="multiple" data-placeholder="Selecciona una o varias etiquetas" style="width: 100%;">
+                            <label for="tags">Tags</label>
+                            <select name="tags[]" class="select2bs4" multiple="multiple" data-placeholder="Select tags" style="width: 100%;">
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag->id }}" {{ collect(old('tags', $post->tags->pluck('id')))->contains($tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
                                 @endforeach
@@ -126,8 +126,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="excerpt">Extracto</label>
-                            <textarea name="excerpt" class="form-control {{ $errors->has('excerpt') ? 'is-invalid' : '' }}" placeholder="Extracto de la publicación">{{ old('excerpt', $post->excerpt) }}</textarea>
+                            <label for="excerpt">Excerpt</label>
+                            <textarea name="excerpt" class="form-control {{ $errors->has('excerpt') ? 'is-invalid' : '' }}" placeholder="Post excerpt">{{ old('excerpt', $post->excerpt) }}</textarea>
                             {!! $errors->first('excerpt', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
 
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Guardar Publicación</button>
+                            <button type="submit" class="btn btn-primary btn-block">Save Post</button>
                         </div>
 
                     </div>
@@ -203,7 +203,7 @@
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            dictDefaultMessage: 'Arrastra las imágenes aquí para subirlas',
+            dictDefaultMessage: 'Drop files here or click to upload',
             paramName: 'photo',
             acceptedFiles: 'image/*',
             maxFilesize: 2

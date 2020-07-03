@@ -29,6 +29,8 @@ Route::group([
     function() {
 
         Route::get('/', 'AdminController@index')->name('admin');
+        // Users routes
+        Route::resource('users', 'UsersController', ['as' => 'admin']);
         // posts routes
         Route::get('posts', 'PostsController@index')->name('admin.posts.index');
         Route::get('posts/create', 'PostsController@create')->name('admin.posts.create');

@@ -1,15 +1,14 @@
 @extends('admin.layouts.layout')
 
-@section('header')
+@section('content-header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Todos los Posts</h1>
+                <h1 class="m-0 text-dark">Users</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin') }}">Inicio</a></li>
-                    <li class="breadcrumb-item active">Todos los Posts</li>
+                    <li class="breadcrumb-item active">Show Users</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,25 +20,24 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">DataTable with default features</h3>
-            <button class="btn btn-primary float-lg-right" data-toggle="modal" data-target="#postModal"><i class="fa fa-plus"></i> New Post</button>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-primary float-lg-right"><i class="fa fa-plus"></i> New User</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="posts-table" class="table table-bordered table-striped">
+            <table id="users-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>Published at</th>
-                    <th>Title</th>
-                    <th>Excerpt</th>
+                    <th>Created At</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($posts as $post)
-                        @include('admin.posts._row')
-                    @endforeach
+                @foreach($users as $user)
+                    @include('admin.users._row')
+                @endforeach
                 </tbody>
-
             </table>
         </div>
         <!-- /.card-body -->
@@ -76,7 +74,7 @@
             }
         } );
         $(function () {
-            $('#posts-table').DataTable({
+            $('#users-table').DataTable({
                 "language": {
                     //"url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Spanish.json"
                     "url": "http://cdn.datatables.net/plug-ins/1.10.21/i18n/English.json"
