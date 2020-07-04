@@ -7,7 +7,7 @@
 @section('content')
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('{{ url('/storage/' . $post->photos->first()->url) }}')">
+    <header class="masthead" style="background-image: url('{{ url('/storage/' . optional($post->photos->first())->url) }}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
