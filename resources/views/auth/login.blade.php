@@ -35,7 +35,7 @@
                     <input type="email"
                            id="email"
                            class="form-control @error('email') is-invalid @enderror"
-                           placeholder="Email"
+                           placeholder="admin@admin.com"
                            name="email"
                            value="{{ old('email') }}"
                            autocomplete="email" autofocus>
@@ -52,7 +52,7 @@
                     <input type="password"
                            id="password"
                            class="form-control @error('password') is-invalid @enderror"
-                           placeholder="Password"
+                           placeholder="password"
                            name="password"
                            autocomplete="current-password">
 

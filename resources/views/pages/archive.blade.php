@@ -2,14 +2,14 @@
 
 @section('content')
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+    <header class="masthead" style="background-image: url('/img/archive-bg.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading">
-                        <h1>Contact Me</h1>
-                        <span class="subheading">Have questions? I have answers.</span>
+                        <h1>Archive</h1>
+                        <span class="subheading">Posts Archive</span>
                     </div>
                 </div>
             </div>
@@ -19,11 +19,56 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+
+                <h3>Authors</h3>
+
+                <ul class="list-unstyled">
+                    @foreach($authors as $author)
+                        <li>
+                            <a href="{{ route('authors.show', $author) }}">
+                                {{ $author->name }} ({{ $author->posts->count() }})
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <h3>Categories</h3>
+
+                <ul class="list-unstyled">
+                    @foreach($categories as $category)
+                        <li class="text-capitalize">
+                            <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+
             </div>
+            <div class="col-md-6">
+
+                <h3>Last posts</h3>
+
+                @foreach($posts as $post)
+                    <p>
+                        <a href="{{ route('posts.show', $post) }}" style="text-decoration: none;">{{ $post->title }}</a>
+                    </p>
+                @endforeach
+
+                <h3>Post by month</h3>
+
+                <ul class="list-unstyled">
+                    @foreach($archive as $date)
+                        <li>
+                            <a href="{{ route('pages.home', ['month' => $date->month, 'year' => $date->year]) }}">
+                                {{ $date->monthname }} {{ $date->year }} ({{ $date->posts }})
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+            </div>
+
         </div>
     </div>
 

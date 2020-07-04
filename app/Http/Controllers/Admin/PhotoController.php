@@ -24,6 +24,6 @@ class PhotoController extends Controller
     {
         $photo->delete();
 
-        return back()->with('flash', 'Foto eliminada correctamente');
+        return back()->with('flash', 'Photo deleted successfully');
     }
 }

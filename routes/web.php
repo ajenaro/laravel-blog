@@ -20,6 +20,7 @@ Route::get('/contact', 'PagesController@contact')->name('pages.contact');
 Route::get('/blog/{post}', 'PostController@show')->name('posts.show');
 Route::get('/category/{category}', 'CategoryController@show')->name('categories.show');
 Route::get('/tag/{tag}', 'TagController@show')->name('tags.show');
+Route::get('/author/{author}', 'AuthorController@show')->name('authors.show');
 
 Route::group([
     'prefix' => 'admin',

@@ -55,7 +55,7 @@ class PostsController extends Controller
 
         return redirect()
             ->route('admin.posts.edit', $post)
-            ->with('flash', 'Tu publicación ha sido guardada correctamente');
+            ->with('flash', 'Post saved successfully');
     }
 
     public function destroy(Post $post)
@@ -64,6 +64,6 @@ class PostsController extends Controller
 
         return redirect()
             ->route('admin.posts.index')
-            ->with('flash', 'Tu publicación ha sido eliminada correctamente');
+            ->with('flash', 'Post deleted successfully');
     }
 }

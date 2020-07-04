@@ -1,9 +1,13 @@
 @extends('layouts.layout')
 
+@section('meta-title', $post->title)
+
+@section('meta-description', $post->excerpt)
+
 @section('content')
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/img/post-bg.jpg')">
+    <header class="masthead" style="background-image: url('{{ url('/storage/' . $post->photos->first()->url) }}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">

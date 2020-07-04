@@ -46,7 +46,33 @@
         <div class="col-md-3">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Last posts</h3>
+                    <h3 class="card-title">Lastest posts</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    @forelse($user->posts->take(5) as $post)
+                        <a href="{{ route('posts.show', $post) }}" target="_blank">
+                            <strong>{{ $post->title }}</strong>
+                        </a>
+                        <br>
+                        @if($post->published_at)
+                            <small class="text-muted">Published at {{ $post->published_at->format('d/m/Y') }}</small>
+                        @endif
+                        <p class="text-muted">{{ $post->truncateExcerpt }}</p>
+                        @unless($loop->last)
+                            <hr>
+                        @endunless
+                    @empty
+                        <small class="text-muted">You have not published yet</small>
+                    @endforelse
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Column 3</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -58,19 +84,7 @@
         <div class="col-md-3">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h3 class="card-title">Roles</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-primary card-outline">
-                <div class="card-header">
-                    <h3 class="card-title">Permissions</h3>
+                    <h3 class="card-title">Column 4</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

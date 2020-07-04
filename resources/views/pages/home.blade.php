@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('meta-title', 'Page Title')
+
+@section('meta-description', 'Page Description')
+
 @section('content')
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
@@ -33,7 +37,7 @@
                         <p class="post-meta">
                             <a href="{{ route('categories.show', $post->category) }}">{{ $post->category->name }}</a> -
                             Posted by
-                            <a href="#">{{ $post->owner->name }}</a>
+                            <a href="{{ route('authors.show', $post->owner) }}">{{ $post->owner->name }}</a>
                             {{ optional($post->published_at)->format('d M, Y') }}
                         </p>
                         @include('posts._tags')
@@ -45,12 +49,7 @@
                     </div>
                 @endforelse
 
-                @if($posts->count())
-                    <!-- Pager -->
-                    <div class="clearfix">
-                        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-                    </div>
-                @endif
+                {{  $posts->appends(request()->all())->links() }}
 
             </div>
         </div>

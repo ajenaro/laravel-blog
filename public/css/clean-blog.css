@@ -407,3 +407,16 @@ footer .copyright {
   font-size: 16px;
   padding: 25px 35px;
 }
+
+.page-link {
+    color: #00657b;
+}
+
+.page-item.active .page-link {
+    background-color: #00657b;
+}
+
+.page-link:focus, .page-link:hover {
+    color: #ffffff;
+    background-color: #00657b;
+}

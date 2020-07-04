@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Post;
+use App\User;
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ $factory->define(Post::class, function (Faker $faker) {
     $title = $faker->sentence(3, true);
     return [
         'category_id' => rand(1 ,2),
-        'user_id' => 1,
+        'user_id' => rand(1 ,User::count()),
         'title' => substr($title, 0, -1),
         'url'   => Str::slug($title, '-'),
         'excerpt' => $faker->paragraph(2, true),

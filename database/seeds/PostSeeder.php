@@ -19,7 +19,7 @@ class PostSeeder extends Seeder
         Photo::truncate();
         Post::truncate();
 
-        factory(Post::class)->times(5)->create();
+        factory(Post::class)->times(50)->create();
 
         $tags = Tag::all();
 
